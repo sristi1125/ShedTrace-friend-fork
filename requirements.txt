@@ -1,4 +1,5 @@
 pandas
 streamlit
 google-generativeai
-python-dotenvpydeck
+python-dotenv
+pydeck
