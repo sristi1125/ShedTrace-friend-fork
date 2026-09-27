@@ -15,9 +15,9 @@ from ai_chat import ask_ai
 import map_view
 
 LOGO_PATH = Path(__file__).parent / "assets" / "shedtrace_logo.png"
-LOGO_B64 = base64.b64encode(LOGO_PATH.read_bytes()).decode()
+LOGO_B64 = base64.b64encode(LOGO_PATH.read_bytes()).decode() if LOGO_PATH.exists() else ""
 
-st.set_page_config(page_title="ShedTrace", page_icon=str(LOGO_PATH))
+st.set_page_config(page_title="ShedTrace", page_icon="🏗️")
 
 
 # ============================================================
@@ -365,9 +365,13 @@ hr {
 # HERO
 # ============================================================
 
+logo_img_tag = (
+    f'<img class="hero-logo" style="height:96px !important; width:auto !important; max-width:none !important; display:block; margin:0 auto;" src="data:image/png;base64,{LOGO_B64}" alt="ShedTrace" />'
+    if LOGO_B64 else ""
+)
 st.html(f"""
 <div class="hero">
-    <img class="hero-logo" style="height:96px !important; width:auto !important; max-width:none !important; display:block; margin:0 auto;" src="data:image/png;base64,{LOGO_B64}" alt="ShedTrace" />
+    {logo_img_tag}
     <div class="hero-subtitle">
         The paper trail behind every shed.
     </div>
